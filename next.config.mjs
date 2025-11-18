@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
@@ -7,10 +8,9 @@ const nextConfig = {
     unoptimized: true,
   },
   distDir: 'dist',
-  server: {
-    host: '0.0.0.0',
-    port: 3000
-  }
+  output: 'export',
+  basePath: isProd ? '/habits' : '',
+  assetPrefix: isProd ? '/habits/' : '',  
 }
 
 export default nextConfig
